@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bs-single-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword2026
+      POSTGRES_DB: business_suite_standalone
+    volumes:
+      - pgdata_single:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: bs-single-api
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DEPLOYMENT_MODE: SINGLE_TENANT
+      DATABASE_URL: postgresql://postgres:postgrespassword2026@postgres:5432/business_suite_standalone?schema=public
+      JWT_SECRET: super-secret-standalone-jwt-key-2026
+      REFRESH_TOKEN_SECRET: super-secret-standalone-refresh-key-2026
+      CORS_ORIGIN: http://localhost:3000
+    ports:
+      - "4000:4000"
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: bs-single-web
+    restart: always
+    depends_on:
+      - api
+    environment:
+      PORT: 3000
+      NEXT_PUBLIC_API_URL: http://localhost:4000/api
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata_single:

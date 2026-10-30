@@ -1,0 +1,7 @@
+
+[INFO] Found PostgreSQL runtime binaries at: {
+  binDir: 'D:\\MyProjects\\Work\\pos\\apps\\desktop\\release\\win-unpacked\\resources\\postgres\\bin'
+}
+[INFO] BusinessSuite Desktop Application starting { version: '1.0.0', platform: 'win32', arch: 'x64' }
+[INFO] Local PostgreSQL data directory already exists. Skipping initdb. 
+[INFO] Starting PostgreSQL service on port 5433... 

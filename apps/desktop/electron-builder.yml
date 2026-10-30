@@ -1,0 +1,55 @@
+appId: com.businesssuite.erp
+productName: BusinessSuite
+copyright: Copyright © 2026 BusinessSuite Inc.
+electronVersion: 30.5.1
+npmRebuild: false
+
+directories:
+  output: release
+  buildResources: src/assets
+
+files:
+  - dist/**/*
+  - src/assets/**/*
+  - package.json
+
+extraResources:
+  - from: resources/postgres
+    to: postgres
+    filter:
+      - "**/*"
+  - from: resources/api
+    to: api
+    filter:
+      - "**/*"
+  - from: resources/web
+    to: web
+    filter:
+      - "**/*"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  icon: src/assets/icon.ico
+  legalTrademarks: BusinessSuite™
+  publisherName: BusinessSuite Inc.
+
+nsis:
+  oneClick: true
+  perMachine: false
+  allowElevation: false
+  allowToChangeInstallationDirectory: false
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: BusinessSuite
+  uninstallDisplayName: BusinessSuite ERP & POS (${version})
+  artifactName: "${productName} Setup ${version}.${ext}"
+  deleteAppDataOnUninstall: false
+
+portable:
+  artifactName: "${productName} ${version} Portable.${ext}"

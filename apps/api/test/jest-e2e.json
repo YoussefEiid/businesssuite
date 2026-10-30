@@ -1,0 +1,13 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testRegex": ".e2e-spec.ts$|.spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@business-suite/shared$": "<rootDir>/../../../packages/shared/dist/index"
+  },
+  "testTimeout": 30000,
+  "testEnvironment": "node"
+}

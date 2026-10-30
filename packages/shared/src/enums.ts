@@ -1,0 +1,100 @@
+export enum DeploymentMode {
+  SAAS = 'SAAS',
+  SINGLE_TENANT = 'SINGLE_TENANT',
+}
+
+export enum SubscriptionStatus {
+  TRIAL = 'TRIAL',
+  ACTIVE = 'ACTIVE',
+  GRACE = 'GRACE',
+  SUSPENDED = 'SUSPENDED',
+  EXPIRED = 'EXPIRED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum TenantStatus {
+  ACTIVE = 'ACTIVE',
+  SUSPENDED = 'SUSPENDED',
+  ARCHIVED = 'ARCHIVED',
+}
+
+export enum SystemRole {
+  SUPER_ADMIN = 'SUPER_ADMIN',
+  TENANT_OWNER = 'TENANT_OWNER',
+  COMPANY_ADMIN = 'COMPANY_ADMIN',
+  SALES_AGENT = 'SALES_AGENT',
+  WAREHOUSE_KEEPER = 'WAREHOUSE_KEEPER',
+  CASHIER = 'CASHIER',
+  REPORTS_VIEWER = 'REPORTS_VIEWER',
+  CUSTOM = 'CUSTOM',
+}
+
+export enum DocumentStatus {
+  DRAFT = 'DRAFT',
+  POSTED = 'POSTED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum PaymentStatus {
+  UNPAID = 'UNPAID',
+  PARTIALLY_PAID = 'PARTIALLY_PAID',
+  PAID = 'PAID',
+  OVERPAID = 'OVERPAID',
+}
+
+export enum ItemType {
+  STOCK = 'STOCK',
+  SERVICE = 'SERVICE',
+}
+
+export enum StockMovementType {
+  OPENING_BALANCE = 'OPENING_BALANCE',
+  PURCHASE_RECEIPT = 'PURCHASE_RECEIPT',
+  PURCHASE_RETURN = 'PURCHASE_RETURN',
+  SALES_DELIVERY = 'SALES_DELIVERY',
+  SALES_RETURN = 'SALES_RETURN',
+  TRANSFER_OUT = 'TRANSFER_OUT',
+  TRANSFER_IN = 'TRANSFER_IN',
+  STOCKTAKE_ADJUSTMENT = 'STOCKTAKE_ADJUSTMENT',
+}
+
+export enum PartyType {
+  CUSTOMER = 'CUSTOMER',
+  SUPPLIER = 'SUPPLIER',
+  BOTH = 'BOTH',
+}
+
+export enum VoucherType {
+  RECEIPT = 'RECEIPT', // سند قبض
+  PAYMENT = 'PAYMENT', // سند صرف
+}
+
+export enum AccountType {
+  CASH = 'CASH', // خزينة نقدية
+  BANK = 'BANK', // حساب بنكي
+}
+
+export enum LeadStatus {
+  NEW = 'NEW',
+  CONTACTED = 'CONTACTED',
+  QUALIFIED = 'QUALIFIED',
+  PROPOSAL_SENT = 'PROPOSAL_SENT',
+  WON = 'WON',
+  LOST = 'LOST',
+}
+
+export enum QuotaKey {
+  USERS_LIMIT = 'USERS_LIMIT',
+  BRANCHES_LIMIT = 'BRANCHES_LIMIT',
+  WAREHOUSES_LIMIT = 'WAREHOUSES_LIMIT',
+  ITEMS_LIMIT = 'ITEMS_LIMIT',
+  MONTHLY_INVOICES_LIMIT = 'MONTHLY_INVOICES_LIMIT',
+  ATTACHMENTS_STORAGE_MB = 'ATTACHMENTS_STORAGE_MB',
+}
+
+export enum CurrencyCode {
+  EGP = 'EGP',
+  SAR = 'SAR',
+  USD = 'USD',
+}
+

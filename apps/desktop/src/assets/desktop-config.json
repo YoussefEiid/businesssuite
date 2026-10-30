@@ -1,0 +1,13 @@
+{
+  "deploymentMode": "DESKTOP_OFFLINE",
+  "targetUrl": "http://127.0.0.1",
+  "receiptPrinter": "",
+  "invoicePrinter": "",
+  "silentPrinting": false,
+  "receiptPaperWidth": "80mm",
+  "openCashDrawerOnSale": true,
+  "autostart": false,
+  "minimizeToTray": false,
+  "backupRetentionCount": 14,
+  "autoBackupDaily": true
+}

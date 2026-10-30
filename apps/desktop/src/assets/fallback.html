@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusinessSuite - تعذر الاتصال بالخادم</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      direction: rtl;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .logo-badge {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);
+    }
+    .logo-badge svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .subtitle-en {
+      font-size: 14px;
+      color: var(--text-muted);
+      direction: ltr;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .status-box {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #fca5a5;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--danger);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .message {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: #334155;
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .btn-outline:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+    .settings-modal {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: right;
+    }
+    .settings-modal.active { display: block; }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: #fff;
+      font-size: 13px;
+      direction: ltr;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .countdown {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-badge">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </div>
+
+    <h1>تعذر الاتصال بالخادم</h1>
+    <div class="subtitle-en">Unable to connect to BusinessSuite server</div>
+
+    <div class="status-box">
+      <div class="status-dot"></div>
+      <span id="statusText">الخادم غير متاح حالياً أو لا يوجد اتصال بالإنترنت</span>
+    </div>
+
+    <p class="message">
+      تأكد من اتصالك بالشبكة أو صحة رابط الخادم. التطبيق سيقوم بإعادة المحاولة تلقائياً.
+      <br>
+      <span style="font-size: 11px; color: #64748b; direction: ltr; display: inline-block; margin-top: 4px;">
+        Please check your network connection or verify that the server address is reachable.
+      </span>
+    </p>
+
+    <div class="actions">
+      <button class="btn-primary" id="retryBtn" onclick="handleRetry()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
+        إعادة المحاولة الآن (Retry)
+      </button>
+
+      <button class="btn-secondary" onclick="toggleSettings()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        إعدادات رابط الخادم (Server Address)
+      </button>
+
+      <button class="btn-outline" onclick="openLogs()">
+        عرض سجلات النظام (View Logs)
+      </button>
+    </div>
+
+    <!-- Server Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+      <div class="form-group">
+        <label for="serverUrlInput">رابط خادم النظام (Server URL):</label>
+        <input type="url" id="serverUrlInput" placeholder="http://localhost:3000 أو https://your-domain.com">
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="saveServerUrl()">
+        حفظ وتطبيق الرابط
+      </button>
+    </div>
+
+    <div class="countdown" id="countdownText">إعادة المحاولة التلقائية بعد 15 ثانية...</div>
+  </div>
+
+  <script>
+    let countdown = 15;
+    let timer = null;
+
+    async function init() {
+      if (window.businessSuiteDesktop) {
+        try {
+          const cfg = await window.businessSuiteDesktop.getDesktopConfig();
+          if (cfg && cfg.targetUrl) {
+            document.getElementById('serverUrlInput').value = cfg.targetUrl;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      startCountdown();
+    }
+
+    function startCountdown() {
+      countdown = 15;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        countdown--;
+        document.getElementById('countdownText').innerText =
+          'إعادة المحاولة التلقائية بعد ' + countdown + ' ثانية...';
+        if (countdown <= 0) {
+          clearInterval(timer);
+          handleRetry();
+        }
+      }, 1000);
+    }
+
+    function handleRetry() {
+      document.getElementById('statusText').innerText = 'جارٍ محاولة الاتصال بالخادم...';
+      if (window.businessSuiteDesktop) {
+        window.businessSuiteDesktop.retryConnection();
+      } else {
+        window.location.reload();
+      }
+      startCountdown();
+    }
+
+    function toggleSettings() {
+      const modal = document.getElementById('settingsModal');
+      modal.classList.toggle('active');
+    }
+
+    async function saveServerUrl() {
+      const url = document.getElementById('serverUrlInput').value.trim();
+      if (!url) return;
+      if (window.businessSuiteDesktop) {
+        await window.businessSuiteDesktop.saveDesktopConfig({ targetUrl: url });
+        handleRetry();
+      }
+    }
+
+    function openLogs() {
+      if (window.businessSuiteDesktop) {
+        window.businessSuiteDesktop.openLogsFolder();
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusinessSuite - تعذر تشغيل الخدمة المحلية</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      direction: rtl;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .logo-badge {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #ef4444, #f87171);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.4);
+    }
+    .logo-badge svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      direction: ltr;
+    }
+    .alert-box {
+      background: var(--danger-bg);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: right;
+    }
+    .alert-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--danger);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .alert-desc {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    button {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: #334155;
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+    .footer {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-badge">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+    </div>
+
+    <h1>تعذر تشغيل BusinessSuite محليًا</h1>
+    <div class="subtitle">Could not start BusinessSuite locally</div>
+
+    <div class="alert-box">
+      <div class="alert-title">
+        <span id="errorTitle">فشل تشغيل الخدمات المحلية</span>
+      </div>
+      <div class="alert-desc" id="errorMessage">
+        تعذر تشغيل قاعدة البيانات المحلية أو خدمة الخادم المحلي. يرجى مراجعة ملفات السجل للتحقق من سبب الخطأ أو إعادة المحاولة.
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-primary" onclick="retryStartup()">
+        <span>إعادة المحاولة</span>
+        <span style="font-size: 11px; opacity: 0.8;">/ Retry</span>
+      </button>
+      <button class="btn-secondary" onclick="viewLogs()">
+        <span>عرض السجلات</span>
+        <span style="font-size: 11px; opacity: 0.8;">/ View Logs</span>
+      </button>
+    </div>
+
+    <div class="footer">
+      BusinessSuite Standalone Offline Edition &bull; الإصدار 1.0.0
+    </div>
+  </div>
+
+  <script>
+    // Extract error query parameters if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const titleParam = urlParams.get('title');
+    const msgParam = urlParams.get('msg');
+    if (titleParam) document.getElementById('errorTitle').textContent = decodeURIComponent(titleParam);
+    if (msgParam) document.getElementById('errorMessage').textContent = decodeURIComponent(msgParam);
+
+    function retryStartup() {
+      if (window.businessSuiteDesktop && window.businessSuiteDesktop.retryConnection) {
+        window.businessSuiteDesktop.retryConnection();
+      } else {
+        location.reload();
+      }
+    }
+
+    function viewLogs() {
+      if (window.businessSuiteDesktop && window.businessSuiteDesktop.openLogsFolder) {
+        window.businessSuiteDesktop.openLogsFolder();
+      }
+    }
+  </script>
+</body>
+</html>

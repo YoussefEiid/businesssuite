@@ -1,0 +1,32 @@
+{
+  "name": "business-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BusinessSuite - Multi-tenant Commercial ERP & SaaS Platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:generate": "npm run db:generate --workspace=@business-suite/api",
+    "db:migrate": "npm run db:migrate --workspace=@business-suite/api",
+    "db:seed": "npm run db:seed --workspace=@business-suite/api",
+    "db:reset": "npm run db:reset --workspace=@business-suite/api",
+    "seed:demo": "npm run seed:demo --workspace=@business-suite/api",
+    "dev": "concurrently -n \"API,WEB\" -c \"cyan,magenta\" \"npm run start:api\" \"npm run start:web\"",
+    "start:api": "npm run start:dev --workspace=@business-suite/api",
+    "start:web": "npm run dev --workspace=@business-suite/web",
+    "dev:desktop": "npm run dev --workspace=@business-suite/desktop",
+    "build:desktop": "npm run build --workspace=@business-suite/desktop",
+    "dist:desktop": "npm run dist --workspace=@business-suite/desktop",
+    "test:desktop": "npm run test --workspace=@business-suite/desktop"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,30 @@
+node_modules/
+.next/
+dist/
+release/
+coverage/
+.env
+.env.*
+*.log
+*.tsbuildinfo
+
+apps/desktop/release/
+apps/desktop/dist/
+apps/web/.next/
+apps/api/dist/
+packages/shared/dist/
+
+# local desktop data/runtime
+data/
+backups/
+logs/
+
+# PostgreSQL bundled/runtime binaries if generated locally
+resources/postgres/
+apps/desktop/resources/postgres/
+
+# OS/editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

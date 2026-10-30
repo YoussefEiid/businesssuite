@@ -1,0 +1,26 @@
+node:internal/modules/cjs/loader:1155
+  throw err;
+  ^
+
+Error: Cannot find module 'tslib'
+Require stack:
+- D:\MyProjects\Work\pos\apps\desktop\release\win-unpacked\resources\api\node_modules\@nestjs\core\index.js
+- D:\MyProjects\Work\pos\apps\desktop\release\win-unpacked\resources\api\dist\main.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1152:15)
+    at Module._load (node:internal/modules/cjs/loader:993:27)
+    at c._load (node:electron/js2c/node_init:2:13801)
+    at Module.require (node:internal/modules/cjs/loader:1240:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (D:\MyProjects\Work\pos\apps\desktop\release\win-unpacked\resources\api\node_modules\@nestjs\core\index.js:4:17)
+    at Module._compile (node:internal/modules/cjs/loader:1373:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1432:10)
+    at Module.load (node:internal/modules/cjs/loader:1215:32)
+    at Module._load (node:internal/modules/cjs/loader:1031:12) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\MyProjects\\Work\\pos\\apps\\desktop\\release\\win-unpacked\\resources\\api\\node_modules\\@nestjs\\core\\index.js',
+    'D:\\MyProjects\\Work\\pos\\apps\\desktop\\release\\win-unpacked\\resources\\api\\dist\\main.js'
+  ]
+}
+
+Node.js v20.16.0
